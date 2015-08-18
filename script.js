@@ -38,20 +38,69 @@ function fruitPrice(fruit){ //fruit price change function
 		fruit.cost = 0.5;
 	}
 
+	if (fruit.type == 'banana'){
+		$('#BananaPrice').text(marketBanana.cost);
+	}
+	else if (fruit.type == 'apple'){
+		$('#ApplePrice').text(marketApple.cost);
+	}
+	else if (fruit.type == 'pear'){
+		$('#PearPrice').text(marketPear.cost);
+	}
+	else{
+		$('#OrangePrice').text(marketOrange.cost);
+	};
+
 	return fruit.cost;
 
 }
 
+// function for updating inventory
+
+function updateInventory(fruitArray, fruitType){
+var count = 0;
+	fruitArray.forEach(function(item){
+			if (item.type == fruitType){
+				count ++;
+}
+	})
+
+	return count;
+
+	
+}
+
+
+// creating fruit objects from fruit constructor
 var marketApple = new Fruit("apple", 10.77);
 var marketOrange = new Fruit("orange",5.55);
 var marketPear = new Fruit("pear", 2.23);
 var marketBanana = new Fruit("banana", 1.35);
 
-fruitPrice(marketApple);
-fruitPrice(marketOrange);
-fruitPrice(marketPear);
-fruitPrice(marketBanana);
+//targeting the class of inventory and amount of money in jQuery
+var $appleNum = $('.appleNum');
+var $bananaNum = $('.bananaNum');
+var $pearNum = $('.pearNum');
+var $oranageNum = $('.orangeNum');
+var $walletNum = $('.walletNum');
 
+//IDs in html file
+var $ApplePrice = $('#ApplePrice');
+var $BananaPrice = $('#BananaPrice');
+var $PearPrice = $('#PearPrice');
+var $OrangePrice = $('#OrangePrice');
+
+
+
+//calling the fruit price function on each fruit object
+
+// fruitPrice(marketApple);
+// fruitPrice(marketOrange);
+// fruitPrice(marketPear);
+// fruitPrice(marketBanana);
+
+
+//calls fruit price function every 15 seconds for each fruit
 setInterval(fruitPrice,15000,marketApple);
 setInterval(fruitPrice,15000,marketOrange);
 setInterval(fruitPrice,15000,marketPear);
@@ -72,6 +121,8 @@ var Customer = function(totalCash, idNum, fruitArr){
 customer = new Customer(100,'0001',[]);
 //console.log(customer1);
 
+
+//all the click event functions for the Buy and Sell buttons
 $(document).ready(function(){
 
 	$('#BuyBanana').on('click', function(){		
@@ -79,7 +130,10 @@ $(document).ready(function(){
 		customer.fruit.push(marketBanana);
 		customer.totalCash -= marketBanana.cost;
 		customer.totalCash = +(customer.totalCash.toFixed(2));	
-		console.log(customer.totalCash, marketBanana.cost);	
+		$('#BananaPrice').text(marketBanana.cost);
+		$('.walletNum').text(customer.totalCash);
+		var bananaCount = updateInventory(customer.fruit, "banana");
+		$('.bananaNum').text(bananaCount);
 
 	});
 
@@ -88,8 +142,10 @@ $(document).ready(function(){
 		customer.fruit.push(marketOrange);
 		customer.totalCash -= marketOrange.cost;
 		customer.totalCash = +(customer.totalCash.toFixed(2));	
-		console.log(customer.totalCash, marketOrange.cost);		
-
+		$('#OrangePrice').text(marketOrange.cost);
+		$('.walletNum').text(customer.totalCash);	
+		var orangeCount = updateInventory(customer.fruit, "orange");
+		$('.orangeNum').text(orangeCount);
 	});
 
 	$('#BuyPear').on('click', function(){		
@@ -97,7 +153,10 @@ $(document).ready(function(){
 		customer.fruit.push(marketPear);
 		customer.totalCash -= marketPear.cost;
 		customer.totalCash = +(customer.totalCash.toFixed(2));	
-		console.log(customer.totalCash, marketPear.cost);		
+		$('#PearPrice').text(marketPear.cost);
+		$('.walletNum').text(customer.totalCash);
+		var pearCount = updateInventory(customer.fruit, "pear");
+		$('.pearNum').text(pearCount);		
 
 	});
 
@@ -106,8 +165,10 @@ $(document).ready(function(){
 		customer.fruit.push(marketApple);
 		customer.totalCash -= marketApple.cost;
 		customer.totalCash = +(customer.totalCash.toFixed(2));	
-		console.log(customer.totalCash, marketApple.cost);		
-
+		$('#ApplePrice').text(marketApple.cost);
+		$('.walletNum').text(customer.totalCash);
+		var appleCount = updateInventory(customer.fruit, "apple");	
+		$('.appleNum').text(appleCount);
 	});
 
 });
