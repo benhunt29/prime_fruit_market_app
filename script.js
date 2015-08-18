@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-function Fruit(type, cost){
-
-	this.type = type;
-	this.cost = function (cost){
-		if(cost > 9.99){
-			this.cost = 9.99;}
-		else if(cost < 0.5) {
-			this.cost = 0.5;
-		}
-		else {
-			this.cost = cost:
-		}
-
-};
-=======
 // random numnber generator
 
 function randomNumber(min, max) {
@@ -34,11 +18,11 @@ function Fruit(type, cost){
 
 // fruit price increment/decrement function
 
-function fruitPrice(fruit){
+function fruitPrice(fruit){ //fruit price change function
 
 	var crement = randomNumber(0,1);
 
-	console.log(fruit.type + ": "+ fruit.cost);
+	//console.log(fruit.type + ": "+ fruit.cost);
 
 	if (crement == 0){
 		 fruit.cost += 0.5
@@ -58,20 +42,20 @@ function fruitPrice(fruit){
 
 }
 
-var apple = new Fruit("apple", 10.77);
-var orange = new Fruit("orange",5.55);
-var pear = new Fruit("pear", 2.23);
-var banana = new Fruit("banana", 1.35);
+var marketApple = new Fruit("apple", 10.77);
+var marketOrange = new Fruit("orange",5.55);
+var marketPear = new Fruit("pear", 2.23);
+var marketBanana = new Fruit("banana", 1.35);
 
-fruitPrice(apple);
-fruitPrice(orange);
-fruitPrice(pear);
-fruitPrice(banana);
+fruitPrice(marketApple);
+fruitPrice(marketOrange);
+fruitPrice(marketPear);
+fruitPrice(marketBanana);
 
-setInterval(fruitPrice,15000,apple);
-setInterval(fruitPrice,15000,orange);
-setInterval(fruitPrice,15000,pear);
-setInterval(fruitPrice,15000,banana);
+setInterval(fruitPrice,15000,marketApple);
+setInterval(fruitPrice,15000,marketOrange);
+setInterval(fruitPrice,15000,marketPear);
+setInterval(fruitPrice,15000,marketBanana);
 
 // create customer object
 
@@ -85,6 +69,47 @@ var Customer = function(totalCash, idNum, fruitArr){
 
 };
 
-customer1 = new Customer(100,'0001',[]);
-console.log(customer1);
->>>>>>> 2512207e1be01c7ae8910c8b50c88e6bf47b4eb7
+customer = new Customer(100,'0001',[]);
+//console.log(customer1);
+
+$(document).ready(function(){
+
+	$('#BuyBanana').on('click', function(){		
+		
+		customer.fruit.push(marketBanana);
+		customer.totalCash -= marketBanana.cost;
+		customer.totalCash = +(customer.totalCash.toFixed(2));	
+		console.log(customer.totalCash, marketBanana.cost);	
+
+	});
+
+	$('#BuyOrange').on('click', function(){		
+		
+		customer.fruit.push(marketOrange);
+		customer.totalCash -= marketOrange.cost;
+		customer.totalCash = +(customer.totalCash.toFixed(2));	
+		console.log(customer.totalCash, marketOrange.cost);		
+
+	});
+
+	$('#BuyPear').on('click', function(){		
+		
+		customer.fruit.push(marketPear);
+		customer.totalCash -= marketPear.cost;
+		customer.totalCash = +(customer.totalCash.toFixed(2));	
+		console.log(customer.totalCash, marketPear.cost);		
+
+	});
+
+	$('#BuyApple').on('click', function(){		
+		
+		customer.fruit.push(marketApple);
+		customer.totalCash -= marketApple.cost;
+		customer.totalCash = +(customer.totalCash.toFixed(2));	
+		console.log(customer.totalCash, marketApple.cost);		
+
+	});
+
+});
+
+
