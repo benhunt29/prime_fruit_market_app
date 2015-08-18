@@ -1,0 +1,39 @@
+
+
+
+
+.appleImage{
+background: url(images/apple.jpg) no-repeat;
+width: 400px;
+height: 400px;
+
+}
+
+.bananaImage{
+background: url(images/banana.jpg) no-repeat;
+width: 400px;
+height: 400px;
+
+}
+
+.pearImage{
+background: url(images/pear.jpg) no-repeat;
+width: 400px;
+height: 400px;
+
+}
+
+.orangeImage{
+background: url(images/orange.jpg) no-repeat;
+width: 400px;
+height: 400px;
+
+}
+
+li{
+
+
+font-size: 24px;
+
+
+}
