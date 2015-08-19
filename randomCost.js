@@ -16,5 +16,3 @@ function randomPrice (){
 
 	return cost;
 }
-
-console.log(cost);
