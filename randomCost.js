@@ -8,7 +8,7 @@ function randomPrice (){
 		var cost = 0.50;
 	}
 	else if (result > 9.99){
-		var cost = 9.99
+		var cost = 9.99;
 	}
 	else{
 		var cost = result;
