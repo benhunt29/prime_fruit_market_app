@@ -34,3 +34,7 @@
 	background: rgba(0, 0, 0, 0.7); 
 	padding: 10px; 
 }
+
+.text-center{
+	text-align: left;
+}
