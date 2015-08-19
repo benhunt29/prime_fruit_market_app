@@ -1,5 +1,27 @@
 // random numnber generator
-
+function sellAll(fruitArr){
+	
+	if(fruitArr.length >= 1){
+		var amountMade = 0;
+		fruitArr.forEach(function(item,index){
+			console.log("inforeach");
+			amountMade += item.cost;
+		});
+		customer.totalCash += amountMade;
+		customer.totalCash = +(customer.totalCash.toFixed(2));
+		customer.fruit = [];
+		$('.bananaNum').text(0);
+		$('.appleNum').text(0);
+		$('.pearNum').text(0);
+		$('.orangeNum').text(0);
+		$('.walletNum').text(customer.totalCash);
+		customer.avgBananaPrice = 0;
+		customer.avgApplePrice = 0;
+		customer.avgPearPrice = 0;
+		customer.avgOrangePrice = 0;
+	}
+	//alert("Market Reset! All fruits have been sold at current market values!");
+}
 function randomNumber(min, max) {
 	return Math.floor(Math.random() * (1 + max - min) + min);
 }
@@ -54,15 +76,34 @@ function fruitPrice(fruit){ //fruit price change function
 
 function updateInventory(fruitArray, fruitType){
 var count = 0;
+var totalCost = 0;
+console.log(fruitType);
 	fruitArray.forEach(function(item){
+			console.log(item.type);
 			if (item.type == fruitType){
+				
 				count ++;
+				totalCost += item.cost;
 			}
-	})
+	});
+	if (fruitType == 'banana'){
+		customer.avgBananaPrice = totalCost/count;
+		//$('#AvgBananaPrice') = customer.avgBananaPrice;
+	}
+	else if (fruitType == 'apple'){
+		customer.avgApplePrice = totalCost/count;
+		//$('#AvgApplePrice') = customer.avgApplePrice;
+	}
+	else if (fruitType == 'pear'){
+		customer.avgPearPrice = totalCost/count;
+		//$('#AvgPearPrice') = customer.avgPearPrice;
+	}
+	else {
+		customer.avgOrangePrice = totalCost/count;
+		//$('#AvgOrangePrice') = customer.avgOrangePrice;
+	}
 
 	return count;
-
-	
 }
 
 
@@ -82,6 +123,10 @@ var $walletNum = $('.walletNum');
 
 var Customer = function(totalCash, idNum, fruitArr){
 	var customer = {};
+	customer.avgBananaPrice = 0;
+	customer.avgOrangePrice = 0;
+	customer.avgPearPrice = 0;
+	customer.avgApplePrice = 0;
 	customer.totalCash = totalCash;
 	customer.idNum = idNum;
 	customer.fruit = fruitArr;
@@ -92,8 +137,10 @@ var Customer = function(totalCash, idNum, fruitArr){
 
 customer = new Customer(100,'0001',[]);
 
+
 //all the click event functions for the Buy and Sell buttons
 $(document).ready(function(){
+	setInterval(sellAll,10000,customer.fruit);
 	$('.walletNum').text(customer.totalCash);
 
 	fruitPrice(marketApple);
@@ -106,7 +153,7 @@ $(document).ready(function(){
 	setInterval(fruitPrice,15000,marketBanana);
 
 	$('#BuyBanana').on('click', function(){		
-		customer.fruit.push(marketBanana);	
+		customer.fruit.push(new Fruit('banana',marketBanana.cost));	
 		$('#BananaPrice').text("$"+marketBanana.cost);
 		if((customer.totalCash - marketBanana.cost) < 0){
 			alert("You don't have enough money!");
@@ -116,12 +163,13 @@ $(document).ready(function(){
 			$('.walletNum').text(customer.totalCash);
 		}
 		var bananaCount = updateInventory(customer.fruit, "banana");
+		console.log(bananaCount);
 		$('.bananaNum').text(bananaCount);
 
 	});
 
 	$('#BuyOrange').on('click', function(){		
-		customer.fruit.push(marketOrange);
+		customer.fruit.push(new Fruit('orange',marketOrange.cost));
 		$('#OrangePrice').text("$"+marketOrange.cost);
 		if((customer.totalCash - marketOrange.cost) < 0){
 			alert("You don't have enough money!");
@@ -134,8 +182,9 @@ $(document).ready(function(){
 		$('.orangeNum').text(orangeCount);
 	});
 
-	$('#BuyPear').on('click', function(){		
-		customer.fruit.push(marketPear);	
+	$('#BuyPear').on('click', function(){
+
+		customer.fruit.push(new Fruit('pear',marketPear.cost));	
 		$('#PearPrice').text("$"+marketPear.cost);
 		if((customer.totalCash - marketPear.cost) < 0){
 			alert("You don't have enough money!");
@@ -150,7 +199,7 @@ $(document).ready(function(){
 	});
 
 	$('#BuyApple').on('click', function(){		
-		customer.fruit.push(marketApple);	
+		customer.fruit.push(new Fruit('apple',marketApple.cost));	
 		$('#ApplePrice').text("$"+marketApple.cost);
 		if((customer.totalCash - marketApple.cost) < 0){
 			alert("You don't have enough money!");
@@ -241,6 +290,8 @@ $(document).ready(function(){
 		}
 
 	});
+
+
 
 })
 
