@@ -1,23 +1,31 @@
 .appleImage{
 	background: url(images/apple.jpg) no-repeat;
+	background-size: 250px 250px;
+	background-position: center;
 	width: 400px;
 	height: 400px;
 }
 
 .bananaImage{
 	background: url(images/banana.jpg) no-repeat;
+	background-size: 400px 400px;
+	background-position: center;
 	width: 400px;
 	height: 400px;
 }
 
 .pearImage{
 	background: url(images/pear.jpg) no-repeat;
+	background-size: 300px 300px;
+	background-position: center;
 	width: 400px;
 	height: 400px;
 }
 
 .orangeImage{
 	background: url(images/orange.jpg) no-repeat;
+	background-size: 350px 350px;
+	background-position: center;
 	width: 400px;
 	height: 400px;
 }
@@ -35,6 +43,3 @@
 	padding: 10px; 
 }
 
-.text-center{
-	text-align: left;
-}
