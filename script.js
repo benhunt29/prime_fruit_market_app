@@ -140,7 +140,8 @@ customer = new Customer(100,'0001',[]);
 
 //all the click event functions for the Buy and Sell buttons
 $(document).ready(function(){
-	setInterval(sellAll,10000,customer.fruit);
+	
+	// setInterval(sellAll,10000,customer.fruit);
 	$('.walletNum').text(customer.totalCash);
 
 	fruitPrice(marketApple);
