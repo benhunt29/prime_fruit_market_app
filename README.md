@@ -1,4 +1,5 @@
-# Prime Group jQuery Challenge
+# Fruit Market App
+
 jQuery is great! It allows us to do so many things! You and your group will need to flex everything you know about 
 Javascript, jQuery, and Bootstrap to tackle this challenge. 
 
@@ -35,3 +36,10 @@ sell fruits they do not already own.
 ##Pro Mode
 Limit the application experience to five minutes. At the end, stop the price fluctuation, sell all of the fruits 
 in their inventory at current market price, and then display the total money they earned from the experience. 
+
+## Project Details
+Prime Digital Academy Assignment  
+Team Programming Project  
+Team: [Ben Hunt](https://github.com/benhunt29), [Kim Hayden](https://github.com/sevnofnyn), [Jason Nelson](https://github.com/UpAndAtThem), [Jason Spidle](https://github.com/panoptican)  
+Technologies: JavaScript, jQuery, HTML5, CSS3, Bootstrap   
+Instructor: [Joseph Szczesniak](https://github.com/NukaPunk)
